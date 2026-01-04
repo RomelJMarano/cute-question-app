@@ -3,757 +3,934 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Will You...? 💕</title>
-  <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Quicksand:wght@400;600;700&family=Caveat:wght@400;700&display=swap" rel="stylesheet">
+  <title>Cute Survey 💖✨</title>
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@300;400;600&family=Pacifico&family=Quicksand:wght@500;700&display=swap" rel="stylesheet">
   <style>
-   * {
+* {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
 }
 body {
-  font-family: 'Quicksand', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 25%, #f093fb 50%, #f5576c 75%, #ffa8a8 100%);
+  font-family: 'Fredoka', sans-serif;
+  background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 25%, #ff9a9e 50%, #fad0c4 75%, #ffecd2 100%);
   background-size: 400% 400%;
-  animation: gradientShift 20s ease infinite;
+  animation: gradientShift 25s ease infinite;
   display: flex;
   justify-content: center;
   align-items: center;
   min-height: 100vh;
   padding: 20px;
-  position: relative;
-  overflow: hidden;
+  overflow-x: hidden;
 }
 @keyframes gradientShift {
   0%, 100% { background-position: 0% 50%; }
   50% { background-position: 100% 50%; }
 }
-.floating-hearts {
-  position: absolute;
+.stars {
+  position: fixed;
   width: 100%;
   height: 100%;
   pointer-events: none;
-  overflow: hidden;
   z-index: 1;
 }
-.floating-heart {
+.star {
   position: absolute;
-  animation: floatUp 5s ease-in-out infinite;
-  font-size: 28px;
+  animation: twinkle 3s ease-in-out infinite;
+  font-size: 20px;
   opacity: 0;
 }
-@keyframes floatUp {
-  0% { transform: translateY(0) rotate(0deg) scale(0); opacity: 0; }
-  10% { opacity: 0.8; transform: scale(1); }
-  90% { opacity: 0.6; }
-  100% { transform: translateY(-100vh) rotate(360deg) scale(0.5); opacity: 0; }
+@keyframes twinkle {
+  0%, 100% { opacity: 0; transform: scale(0) rotate(0deg); }
+  50% { opacity: 1; transform: scale(1) rotate(180deg); }
 }
 .container {
+  max-width: 420px;
+  width: 100%;
   position: relative;
   z-index: 10;
-  max-width: 380px;
-  width: 100%;
 }
-.card {
+.survey-card {
   background: rgba(255, 255, 255, 0.95);
-  backdrop-filter: blur(10px);
-  padding: 25px 20px;
+  backdrop-filter: blur(15px);
   border-radius: 25px;
+  padding: 30px 25px;
+  box-shadow: 0 15px 40px rgba(0,0,0,0.1);
+  animation: slideIn 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+@keyframes slideIn {
+  from { opacity: 0; transform: translateY(50px) scale(0.9); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+.header {
   text-align: center;
-  box-shadow: 0 20px 60px rgba(0,0,0,0.3), 0 0 0 1px rgba(255,255,255,0.3) inset;
-  transform: scale(1);
-  transition: transform 0.3s ease;
+  margin-bottom: 25px;
 }
-.card.shake {
-  animation: shake 0.6s cubic-bezier(.36,.07,.19,.97);
-}
-.card.dramatic-shake {
-  animation: dramaticShake 0.8s cubic-bezier(.36,.07,.19,.97);
-}
-@keyframes shake {
-  10%, 90% { transform: translateX(-5px) rotate(-1deg); }
-  20%, 80% { transform: translateX(5px) rotate(1deg); }
-  30%, 50%, 70% { transform: translateX(-8px) rotate(-1.5deg); }
-  40%, 60% { transform: translateX(8px) rotate(1.5deg); }
-}
-@keyframes dramaticShake {
-  0% { transform: translateX(0) rotate(0); }
-  10% { transform: translateX(-15px) rotate(-5deg); }
-  20% { transform: translateX(15px) rotate(5deg); }
-  30% { transform: translateX(-15px) rotate(-5deg); }
-  40% { transform: translateX(15px) rotate(5deg); }
-  50% { transform: translateX(-10px) rotate(-3deg); }
-  60% { transform: translateX(10px) rotate(3deg); }
-  70% { transform: translateX(-5px) rotate(-1deg); }
-  80% { transform: translateX(5px) rotate(1deg); }
-  90% { transform: translateX(-2px) rotate(-0.5deg); }
-  100% { transform: translateX(0) rotate(0); }
-}
-.emoji-header {
+.header-emoji {
   font-size: 50px;
-  margin-bottom: 15px;
-  animation: gentleBounce 3s ease-in-out infinite;
+  animation: bounce 2s ease-in-out infinite;
   display: inline-block;
   cursor: pointer;
   transition: transform 0.3s ease;
-  filter: drop-shadow(0 4px 8px rgba(0,0,0,0.1));
 }
-.emoji-header:hover {
-  transform: scale(1.15) rotate(15deg);
+.header-emoji:hover {
+  transform: scale(1.2) rotate(15deg);
 }
-.emoji-header.sad {
-  animation: sadBounce 2s ease-in-out infinite;
-}
-@keyframes gentleBounce {
+@keyframes bounce {
   0%, 100% { transform: translateY(0); }
   50% { transform: translateY(-15px); }
 }
-@keyframes sadBounce {
-  0%, 100% { transform: translateY(0) rotate(-10deg); }
-  50% { transform: translateY(-10px) rotate(10deg); }
-}
 h1 {
   font-family: 'Pacifico', cursive;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+  font-size: 28px;
+  background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  background-clip: text;
-  font-size: 22px;
-  margin-bottom: 15px;
+  margin: 12px 0 8px;
   font-weight: 400;
-  letter-spacing: 1px;
 }
-.question {
-  font-family: 'Caveat', cursive;
-  font-size: 20px;
+.subtitle {
+  color: #636e72;
+  font-size: 14px;
+  font-weight: 400;
+}
+.progress-bar {
+  width: 100%;
+  height: 6px;
+  background: #f0f0f0;
+  border-radius: 10px;
+  margin: 20px 0;
+  overflow: hidden;
+}
+.progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #f093fb, #f5576c);
+  border-radius: 10px;
+  transition: width 0.5s ease;
+  width: 0%;
+}
+.question-container {
+  animation: fadeInUp 0.5s ease;
+}
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.question-number {
+  display: inline-block;
+  background: linear-gradient(135deg, #a8edea, #fed6e3);
   color: #2d3436;
-  margin: 15px 0;
+  padding: 6px 16px;
+  border-radius: 20px;
+  font-size: 14px;
+  font-weight: 600;
+  margin-bottom: 15px;
+}
+.question-text {
+  font-size: 18px;
+  color: #2d3436;
+  margin-bottom: 18px;
+  font-weight: 500;
   line-height: 1.5;
-  font-weight: 700;
+}
+.input-text {
+  width: 100%;
+  padding: 15px 20px;
+  border: 3px solid #ffeaa7;
+  border-radius: 15px;
+  font-size: 16px;
+  font-family: 'Quicksand', sans-serif;
+  transition: all 0.3s ease;
+  background: white;
+  font-weight: 500;
+}
+.input-text:focus {
+  outline: none;
+  border-color: #fdcb6e;
+  box-shadow: 0 0 0 4px rgba(253, 203, 110, 0.2);
+  transform: scale(1.02);
+}
+.emoji-options {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin: 20px 0;
+}
+.emoji-btn {
+  font-size: 36px;
+  padding: 12px;
+  border: 2px solid transparent;
+  border-radius: 15px;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  background: rgba(255, 255, 255, 0.5);
+}
+.emoji-btn:hover {
+  transform: scale(1.15) rotate(10deg);
+  background: rgba(255, 255, 255, 0.9);
+}
+.emoji-btn.selected {
+  border-color: #f5576c;
+  background: #fff0f6;
+  transform: scale(1.2);
+  box-shadow: 0 5px 20px rgba(245, 87, 108, 0.3);
+}
+.slider-container {
+  margin: 25px 0;
+}
+.slider-labels {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+  font-size: 14px;
+  color: #636e72;
+}
+.slider {
+  width: 100%;
+  height: 12px;
+  border-radius: 10px;
+  background: linear-gradient(to right, #a8edea, #fed6e3, #f5576c);
+  outline: none;
+  -webkit-appearance: none;
+}
+.slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: white;
+  cursor: pointer;
+  border: 4px solid #f5576c;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+  transition: all 0.2s ease;
+}
+.slider::-webkit-slider-thumb:hover {
+  transform: scale(1.2);
+  box-shadow: 0 8px 25px rgba(245, 87, 108, 0.4);
+}
+.slider-value {
+  text-align: center;
+  margin-top: 12px;
+  font-size: 24px;
+  font-weight: 600;
+  color: #f5576c;
+}
+.checkbox-group {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.checkbox-item {
+  display: flex;
+  align-items: center;
+  padding: 15px;
+  background: rgba(255, 255, 255, 0.7);
+  border-radius: 15px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border: 2px solid transparent;
+}
+.checkbox-item:hover {
+  background: rgba(255, 255, 255, 1);
+  transform: translateX(5px);
+}
+.checkbox-item.selected {
+  background: #fff0f6;
+  border-color: #f5576c;
+}
+.checkbox-item input {
+  margin-right: 12px;
+  width: 22px;
+  height: 22px;
+  cursor: pointer;
+  accent-color: #f5576c;
+}
+.checkbox-item label {
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: 500;
+  flex: 1;
 }
 .button-container {
   display: flex;
   gap: 12px;
-  justify-content: center;
-  margin: 20px 0 15px 0;
-  flex-wrap: wrap;
+  margin-top: 30px;
 }
 .btn {
-  padding: 12px 35px;
+  flex: 1;
+  padding: 14px 25px;
   border: none;
   border-radius: 50px;
+  font-size: 15px;
+  font-weight: 600;
   cursor: pointer;
-  font-weight: 700;
-  font-size: 16px;
   transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-  box-shadow: 0 8px 20px rgba(0,0,0,0.15);
-  position: relative;
-  overflow: hidden;
-  font-family: inherit;
+  font-family: 'Fredoka', sans-serif;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
 }
-.btn::before {
-  content: '';
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 0;
-  height: 0;
-  border-radius: 50%;
-  background: rgba(255,255,255,0.4);
-  transform: translate(-50%, -50%);
-  transition: width 0.5s, height 0.5s;
-}
-.btn:active::before {
-  width: 350px;
-  height: 350px;
-}
-.btn-yes {
+.btn-next {
   background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
   color: white;
-  animation: pulse 2.5s ease-in-out infinite;
 }
-@keyframes pulse {
-  0%, 100% { transform: scale(1); }
-  50% { transform: scale(1.05); }
+.btn-next:hover:not(:disabled) {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 35px rgba(245, 87, 108, 0.4);
 }
-.btn-yes:hover {
-  transform: scale(1.12);
-  box-shadow: 0 12px 35px rgba(245,87,108,0.5);
+.btn-next:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
 }
-.btn-no {
+.btn-back {
   background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
   color: #2d3436;
-  transition: all 0.3s ease;
 }
-.btn-no:hover {
-  transform: scale(0.92);
-  opacity: 0.8;
+.btn-back:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 35px rgba(168, 237, 234, 0.4);
 }
-.hidden {
-  display: none;
+.results-container {
+  text-align: center;
+  animation: fadeInScale 0.6s ease;
 }
-.response {
-  font-size: 17px;
-  color: #2d3436;
-  margin: 15px 0;
-  line-height: 1.6;
-  animation: fadeInScale 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-  font-weight: 500;
+.gif-display {
+  margin: 20px 0;
+  text-align: center;
+  animation: fadeInScale 0.5s ease;
+}
+.gif-display img {
+  max-width: 150px;
+  width: 100%;
+  height: auto;
+  border-radius: 12px;
 }
 @keyframes fadeInScale {
-  from { opacity: 0; transform: scale(0.9) translateY(20px); }
-  to { opacity: 1; transform: scale(1) translateY(0); }
+  from { opacity: 0; transform: scale(0.9); }
+  to { opacity: 1; transform: scale(1); }
 }
-.love-meter {
+.results-emoji {
+  font-size: 70px;
+  margin: 15px 0;
+  animation: celebrate 1s ease-in-out;
+}
+@keyframes celebrate {
+  0%, 100% { transform: scale(1) rotate(0deg); }
+  25% { transform: scale(1.2) rotate(-10deg); }
+  75% { transform: scale(1.2) rotate(10deg); }
+}
+.results-title {
+  font-size: 28px;
+  color: #2d3436;
   margin: 20px 0;
-  position: relative;
-}
-.meter-label {
-  font-size: 14px;
-  color: #636e72;
-  margin-bottom: 10px;
   font-weight: 600;
 }
-.meter-bar {
-  width: 100%;
-  height: 28px;
-  background: #f0f0f0;
+.answer-card {
+  background: rgba(255, 240, 246, 0.7);
+  padding: 20px;
   border-radius: 20px;
-  overflow: hidden;
-  position: relative;
-  box-shadow: inset 0 2px 4px rgba(0,0,0,0.1);
+  margin: 15px 0;
+  text-align: left;
+  border: 2px solid #fed6e3;
 }
-.meter-fill {
-  height: 100%;
-  background: linear-gradient(90deg, #667eea, #764ba2, #f093fb, #f5576c);
-  background-size: 200% 100%;
-  animation: shimmer 3s ease-in-out infinite;
-  border-radius: 20px;
-  transition: width 2s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-  display: flex;
-  align-items: center;
-  justify-content: flex-end;
-  padding-right: 10px;
-  font-size: 16px;
-}
-@keyframes shimmer {
-  0%, 100% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-}
-.flower-rain {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  pointer-events: none;
-  z-index: 1000;
-}
-.falling-flower {
-  position: absolute;
-  font-size: 35px;
-  animation: fall 4s ease-in;
-  opacity: 0;
-}
-@keyframes fall {
-  0% { top: -100px; opacity: 1; transform: rotate(0deg); }
-  100% { top: 100vh; opacity: 0; transform: rotate(720deg); }
-}
-.next-btn {
-  margin-top: 15px;
-  padding: 12px 30px;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  color: white;
-  border: none;
-  border-radius: 50px;
-  cursor: pointer;
-  font-weight: 700;
+.answer-question {
   font-size: 15px;
-  transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-  box-shadow: 0 8px 20px rgba(102,126,234,0.3);
-  font-family: inherit;
+  color: #636e72;
+  margin-bottom: 8px;
+  font-weight: 500;
 }
-.next-btn:hover {
-  transform: scale(1.08) translateY(-2px);
-  box-shadow: 0 12px 30px rgba(102,126,234,0.4);
-}
-.surprise-text {
-  font-size: 12px;
-  color: #b2bec3;
-  margin-top: 10px;
-  font-style: italic;
-}
-.sassy-comment {
-  font-size: 13px;
-  color: #e17055;
-  margin-top: 10px;
+.answer-text {
+  font-size: 18px;
+  color: #2d3436;
   font-weight: 600;
-  animation: fadeIn 0.5s ease;
-}
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(-10px); }
-  to { opacity: 1; transform: translateY(0); }
 }
 .confetti {
   position: fixed;
-  width: 12px;
-  height: 12px;
-  position: absolute;
-  animation: confettiFall 3s ease-out;
-  border-radius: 2px;
+  pointer-events: none;
+  animation: confettiFall 3s ease-out forwards;
 }
 @keyframes confettiFall {
   to { transform: translateY(100vh) rotate(720deg); opacity: 0; }
 }
-.gif-display {
-  margin: 12px 0;
-  animation: fadeInScale 0.5s ease;
-}
-.gif-display img {
-  max-width: 180px;
-  width: 100%;
-  height: auto;
-  border-radius: 12px;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-  background: transparent;
-}
-.epic-finale {
-  animation: smoothFloat 3s ease-in-out infinite;
-  transform-style: preserve-3d;
-}
-@keyframes smoothFloat {
-  0%, 100% { transform: translateY(0px) rotateX(0deg); }
-  50% { transform: translateY(-20px) rotateX(2deg); }
-}
-.firework {
-  position: fixed;
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  pointer-events: none;
-  z-index: 9999;
-}
-@keyframes fireworkExplode {
-  0% { transform: translate(0, 0) scale(1); opacity: 1; }
-  100% { transform: translate(var(--x), var(--y)) scale(0); opacity: 0; }
-}
-.sparkle {
-  position: fixed;
-  pointer-events: none;
-  z-index: 9999;
-  animation: sparkleFloat 2s ease-out forwards;
-}
-@keyframes sparkleFloat {
-  0% { transform: translateY(0) scale(0) rotate(0deg); opacity: 0; }
-  10% { opacity: 1; transform: scale(1.5); }
-  100% { transform: translateY(-200px) scale(0.5) rotate(720deg); opacity: 0; }
-}
-.final-glow {
-  box-shadow: 0 0 30px rgba(255,182,193,0.4), 0 0 60px rgba(147,112,219,0.3), 0 20px 60px rgba(0,0,0,0.3);
-  animation: subtleGlow 2s ease-in-out infinite;
-}
-@keyframes subtleGlow {
-  0%, 100% { box-shadow: 0 0 30px rgba(255,182,193,0.4), 0 0 60px rgba(147,112,219,0.3), 0 20px 60px rgba(0,0,0,0.3); }
-  50% { box-shadow: 0 0 50px rgba(255,182,193,0.6), 0 0 90px rgba(147,112,219,0.4), 0 20px 70px rgba(0,0,0,0.4); }
+.hidden {
+  display: none;
 }
 @media (max-width: 600px) {
-  .card { padding: 25px 20px; }
-  h1 { font-size: 20px; }
-  .question { font-size: 18px; }
-  .emoji-header { font-size: 45px; }
-  .btn { padding: 11px 28px; font-size: 15px; }
-  .gif-display img { max-width: 160px; }
-  .response { font-size: 16px; }
-}
-@media (max-width: 400px) {
-  .container { max-width: 320px; }
-  .card { padding: 20px 15px; }
-  h1 { font-size: 18px; }
-  .question { font-size: 16px; }
-  .emoji-header { font-size: 40px; }
-  .btn { padding: 10px 25px; font-size: 14px; }
-  .gif-display img { max-width: 140px; }
-  .response { font-size: 15px; }
-  .meter-bar { height: 24px; }
-  .meter-fill { font-size: 14px; }
+  .survey-card { padding: 30px 25px; }
+  h1 { font-size: 26px; }
+  .question-text { font-size: 18px; }
+  .emoji-btn { font-size: 35px; padding: 12px; }
+  .btn { padding: 14px 25px; font-size: 16px; }
 }
   </style>
 </head>
 <body>
-  <div class="floating-hearts" id="floatingHearts"></div>
-  <div class="flower-rain" id="flowerRain"></div>
+  <div class="stars" id="stars"></div>
   
   <div class="container">
-    <div class="card" id="card">
-      <div class="emoji-header" id="emoji" onclick="emojiClick()">💝</div>
-      <h1 id="title">A Question for You...</h1>
-      
-      <div id="questionSection">
-        <div class="question" id="question"></div>
-        
-        <div id="gifContainer" class="gif-display hidden">
-          <img id="gifImage" src="" alt="Reaction GIF">
-        </div>
-        
-        <div class="button-container">
-          <button class="btn btn-yes" onclick="answerYes()">YES! 💕</button>
-          <button class="btn btn-no" id="noBtn" onclick="answerNo()">No...</button>
-        </div>
-        <div class="surprise-text" id="hintText">*hint* the Yes button has extra sparkle ✨</div>
-        <div class="sassy-comment hidden" id="sassyComment"></div>
+    <div class="survey-card">
+      <div class="header">
+        <div class="header-emoji" onclick="emojiClick()">💝</div>
+        <h1>For You, Baby 💕</h1>
+        <p class="subtitle">Answer these for me, lovee ✨</p>
       </div>
-      
-      <div id="responseSection" class="hidden">
-        <div class="response" id="response"></div>
-        
-        <div id="responseGifContainer" class="gif-display hidden">
-          <img id="responseGifImage" src="" alt="Celebration GIF">
+
+      <div class="progress-bar">
+        <div class="progress-fill" id="progressFill"></div>
+      </div>
+
+      <div id="questionSection">
+        <div class="question-container" id="questionContainer">
+          <span class="question-number" id="questionNumber">Question 1 of 12</span>
+          <div class="question-text" id="questionText"></div>
+          <div id="answerArea"></div>
         </div>
-        
-        <div class="love-meter">
-          <div class="meter-label">Love Level:</div>
-          <div class="meter-bar">
-            <div class="meter-fill" id="meterFill" style="width: 0%">
-              <span id="meterEmoji">💖</span>
-            </div>
-          </div>
+
+        <div class="button-container">
+          <button class="btn btn-back" id="backBtn" onclick="goBack()">← Back</button>
+          <button class="btn btn-next" id="nextBtn" onclick="goNext()">Next →</button>
         </div>
-        <button class="next-btn" onclick="nextQuestion()">Next Question ✨</button>
+      </div>
+
+      <div id="resultsSection" class="hidden results-container">
+        <div class="results-emoji">💕</div>
+        <h2 class="results-title">Thank you, baby! 🥰</h2>
+        <p class="subtitle" style="margin: 20px 0;">Here's everything you told me, lovee 💖</p>
+        <div class="gif-display">
+          <img src="sleeping-cat.gif" alt="Cute cat">
+        </div>
+        <div id="resultsContent"></div>
+        <button class="btn btn-next" onclick="restartSurvey()" style="margin-top: 25px; width: 100%;">
+          Do it again? 🔄
+        </button>
       </div>
     </div>
   </div>
 
   <script>
-    const questions = [
-      {
-        q: "You know you're the only one for me?",
-        yesRes: "Good, because it's true, babiiee. Only you 💕",
-        noRes: "Well now you know, bb. You're the only one I want 😊",
-        emoji: "✨",
-        gifFile: "aww-sad-face.gif",
-        yesGif: "kawaii-anime.gif"
-      },
-      {
-        q: "You're the prettiest person I've ever seen",
-        yesRes: "You really are, lovee. I can't stop looking at you 🥰",
-        noRes: "I mean it, mosh. You're absolutely beautiful 💙",
-        emoji: "🌟",
-        gifFile: "sadpepe-sad.gif",
-        yesGif: "09-osito-2.gif"
-      },
-      {
-        q: "You know I'm always thinking about you?",
-        yesRes: "Can't get you out of my mind, babe 💕",
-        noRes: "You're always on my mind, bbq. 24/7 ✨",
-        emoji: "💖",
-        gifFile: "cat-roll.gif",
-        yesGif: "sleeping-cat.gif"
-      },
-      {
-        q: "You make everything better just by existing",
-        yesRes: "My life is better with you in it, baby 😊",
-        noRes: "Everything's better when you're around, loml 💙",
-        emoji: "😊",
-        gifFile: "pixel-cat.gif",
-        yesGif: "kawaii-anime.gif"
-      },
-      {
-        q: "You're the most special person to me",
-        yesRes: "No one compares to you, lovelovee 🫂",
-        noRes: "You're irreplaceable, bb. Just you 💕",
-        emoji: "🤝",
-        gifFile: "aww-sad-face.gif",
-        yesGif: "09-osito-2.gif"
-      },
-      {
-        q: "You're perfect the way you are",
-        yesRes: "Don't change anything, babiiee. You're perfect ✨",
-        noRes: "Everything about you is perfect, mosh 💙",
-        emoji: "💫",
-        gifFile: "sadpepe-sad.gif",
-        yesGif: "pixel-cat.gif"
-      },
-      {
-        q: "You're the most beautiful thing in my life",
-        yesRes: "Inside and out, lovee. You're everything 💕",
-        noRes: "You're absolutely stunning, babe 😊",
-        emoji: "🌸",
-        gifFile: "cat-roll.gif",
-        yesGif: "sleeping-cat.gif"
-      },
-      {
-        q: "I love you more than anything",
-        yesRes: "You're my everything, baby 💕",
-        noRes: "I love you so much, bbq. More than words can say 💖",
-        emoji: "💝",
-        gifFile: "pixel-cat.gif",
-        yesGif: "cat-roll.gif"
-      }
-    ];
+const allQuestions = [
+  {
+    type: 'text',
+    question: "What's something you love about us, baby? 💕",
+    placeholder: "Tell me what makes us special...",
+    gif: "kawaii-anime.gif"
+  },
+  {
+    type: 'emoji',
+    question: "How happy are you with me right now, lovee? 🥰",
+    options: ['😊', '🥰', '😍', '🤗', '😌', '💕', '🥹', '💖'],
+    gif: "09-osito-2.gif"
+  },
+  {
+    type: 'slider',
+    question: "On a scale of 1-10, how much do you love me? 💖",
+    min: 1,
+    max: 10,
+    gif: "sleeping-cat.gif"
+  },
+  {
+    type: 'text',
+    question: "Where should we go on our next date, mosh? ✨",
+    placeholder: "Type your dream date idea...",
+    gif: "pixel-cat.gif"
+  },
+  {
+    type: 'checkbox',
+    question: "What do you wanna do with me? (pick all you want, bb) 🫂",
+    options: ['🍿 Movie night', '🍕 Food trip', '🎮 Play games', '🌙 Stargaze', '🎨 Be creative', '🛌 Just cuddle'],
+    gif: "cat-roll.gif"
+  },
+  {
+    type: 'emoji',
+    question: "Which emoji represents how you feel about me? 💝",
+    options: ['💕', '💖', '💗', '💝', '💘', '❤️', '💓', '🥰'],
+    gif: "kawaii-anime.gif"
+  },
+  {
+    type: 'slider',
+    question: "How much do you miss me right now, babiiee? 🥺",
+    min: 1,
+    max: 10,
+    gif: "aww-sad-face.gif"
+  },
+  {
+    type: 'text',
+    question: "Say something sweet to me, loml 💌",
+    placeholder: "Write something that'll make me smile...",
+    gif: "09-osito-2.gif"
+  },
+  {
+    type: 'text',
+    question: "What's your favorite memory of us together? 🥰",
+    placeholder: "Tell me about a special moment...",
+    gif: "sleeping-cat.gif"
+  },
+  {
+    type: 'emoji',
+    question: "How do you feel when we're apart? 💔",
+    options: ['🥺', '😢', '😔', '🥲', '💔', '😭', '🤧', '😞'],
+    gif: "sadpepe-sad.gif"
+  },
+  {
+    type: 'slider',
+    question: "How excited are you to see me next? 🎉",
+    min: 1,
+    max: 10,
+    gif: "pixel-cat.gif"
+  },
+  {
+    type: 'text',
+    question: "What's one thing you want to tell me right now? 💬",
+    placeholder: "Anything on your mind, baby...",
+    gif: "cat-roll.gif"
+  },
+  {
+    type: 'checkbox',
+    question: "What do you love most about me? (pick as many as you want) 💖",
+    options: ['😊 Your smile', '🤗 Your hugs', '💬 Our talks', '😂 Your jokes', '🎵 Your voice', '💕 Everything'],
+    gif: "kawaii-anime.gif"
+  },
+  {
+    type: 'emoji',
+    question: "Rate our relationship with an emoji! 💑",
+    options: ['🔥', '💯', '✨', '🌟', '💕', '😍', '🥰', '❤️'],
+    gif: "09-osito-2.gif"
+  },
+  {
+    type: 'text',
+    question: "If you could say anything to me right now, what would it be? 💝",
+    placeholder: "Speak your heart, lovee...",
+    gif: "sleeping-cat.gif"
+  },
+  {
+    type: 'text',
+    question: "What's your favorite thing I do for you, bb? 🌟",
+    placeholder: "Something that makes you feel loved...",
+    gif: "kawaii-anime.gif"
+  },
+  {
+    type: 'emoji',
+    question: "What's your mood when you think of me? 😊",
+    options: ['☺️', '😌', '🥰', '😁', '🤭', '😇', '🥹', '💗'],
+    gif: "pixel-cat.gif"
+  },
+  {
+    type: 'slider',
+    question: "How lucky do you feel to have me? 🍀",
+    min: 1,
+    max: 10,
+    gif: "09-osito-2.gif"
+  },
+  {
+    type: 'text',
+    question: "Complete this: You make me feel... 💭",
+    placeholder: "Tell me how I make you feel...",
+    gif: "sleeping-cat.gif"
+  },
+  {
+    type: 'checkbox',
+    question: "What are your favorite things we do together? 🎀",
+    options: ['💬 Deep talks', '🎶 Listen to music', '🍽️ Eat together', '😂 Laugh together', '🤳 Take pics', '💤 Nap together'],
+    gif: "cat-roll.gif"
+  },
+  {
+    type: 'emoji',
+    question: "How would you describe our love? 💞",
+    options: ['🌈', '🌺', '🔥', '🌙', '⭐', '💎', '🦋', '🌸'],
+    gif: "kawaii-anime.gif"
+  },
+  {
+    type: 'text',
+    question: "What's something you're excited to do with me in the future? 🚀",
+    placeholder: "Dream with me, babiiee...",
+    gif: "pixel-cat.gif"
+  },
+  {
+    type: 'slider',
+    question: "How comfortable are you around me? 🏠",
+    min: 1,
+    max: 10,
+    gif: "sleeping-cat.gif"
+  },
+  {
+    type: 'text',
+    question: "What song reminds you of us, lovee? 🎵",
+    placeholder: "Tell me our song...",
+    gif: "09-osito-2.gif"
+  },
+  {
+    type: 'emoji',
+    question: "Pick the vibe of our relationship! ✨",
+    options: ['🌟', '🎀', '🍓', '🌈', '💫', '🦄', '🎨', '🌸'],
+    gif: "cat-roll.gif"
+  },
+  {
+    type: 'checkbox',
+    question: "What makes you smile about me? (choose all, mosh) 😊",
+    options: ['😄 Your energy', '🫂 Your warmth', '💝 Your love', '🎭 Your personality', '👀 Your eyes', '💭 Your mind'],
+    gif: "kawaii-anime.gif"
+  },
+  {
+    type: 'text',
+    question: "Describe me in 3 words, baby 💕",
+    placeholder: "Just 3 words about me...",
+    gif: "pixel-cat.gif"
+  },
+  {
+    type: 'slider',
+    question: "How much do you trust me? 🤝",
+    min: 1,
+    max: 10,
+    gif: "09-osito-2.gif"
+  },
+  {
+    type: 'text',
+    question: "What do you want me to know today? 💌",
+    placeholder: "Anything you need to tell me...",
+    gif: "sleeping-cat.gif"
+  },
+  {
+    type: 'emoji',
+    question: "What's the first thing you think of when you see my name? 📱",
+    options: ['💕', '😊', '🥰', '😍', '💖', '🤗', '😌', '💗'],
+    gif: "kawaii-anime.gif"
+  }
+];
 
-    let currentQ = 0;
-    let loveLevel = 0;
-    let noBtnClicks = 0;
+let questions = [];
+let currentQ = 0;
+let answers = {};
 
-    function startGame() {
-      showQuestion();
+function shuffleQuestions() {
+  // Create a copy of all questions
+  const shuffled = [...allQuestions];
+  
+  // Fisher-Yates shuffle algorithm
+  for (let i = shuffled.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+  }
+  
+  // Return only 12 random questions
+  return shuffled.slice(0, 12);
+}
+
+function startSurvey() {
+  currentQ = 0;
+  answers = {};
+  questions = shuffleQuestions(); // Get 8 random questions
+  showQuestion();
+  updateProgress();
+  document.getElementById('backBtn').style.display = 'none';
+}
+
+function showQuestion() {
+  const q = questions[currentQ];
+  const answerArea = document.getElementById('answerArea');
+  
+  document.getElementById('questionNumber').textContent = `Question ${currentQ + 1} of ${questions.length}`;
+  document.getElementById('questionText').textContent = q.question;
+  
+  // Reset animation
+  const container = document.getElementById('questionContainer');
+  container.style.animation = 'none';
+  setTimeout(() => container.style.animation = 'fadeInUp 0.5s ease', 10);
+  
+  answerArea.innerHTML = '';
+  
+  // Add GIF if available
+  if (q.gif) {
+    const gifDiv = document.createElement('div');
+    gifDiv.className = 'gif-display';
+    const gifImg = document.createElement('img');
+    gifImg.src = q.gif;
+    gifImg.alt = 'Cute GIF';
+    gifDiv.appendChild(gifImg);
+    answerArea.appendChild(gifDiv);
+  }
+  
+  if (q.type === 'text') {
+    const input = document.createElement('input');
+    input.type = 'text';
+    input.className = 'input-text';
+    input.placeholder = q.placeholder;
+    input.value = answers[currentQ] || '';
+    input.oninput = () => updateNextButton();
+    answerArea.appendChild(input);
+  } 
+  else if (q.type === 'emoji') {
+    const emojiDiv = document.createElement('div');
+    emojiDiv.className = 'emoji-options';
+    q.options.forEach(emoji => {
+      const btn = document.createElement('button');
+      btn.className = 'emoji-btn';
+      btn.textContent = emoji;
+      if (answers[currentQ] === emoji) btn.classList.add('selected');
+      btn.onclick = () => selectEmoji(btn, emoji);
+      emojiDiv.appendChild(btn);
+    });
+    answerArea.appendChild(emojiDiv);
+  } 
+  else if (q.type === 'slider') {
+    const sliderDiv = document.createElement('div');
+    sliderDiv.className = 'slider-container';
+    
+    const labels = document.createElement('div');
+    labels.className = 'slider-labels';
+    labels.innerHTML = `<span>${q.min}</span><span>${q.max}</span>`;
+    
+    const slider = document.createElement('input');
+    slider.type = 'range';
+    slider.className = 'slider';
+    slider.min = q.min;
+    slider.max = q.max;
+    slider.value = answers[currentQ] || Math.floor((q.min + q.max) / 2);
+    
+    const valueDisplay = document.createElement('div');
+    valueDisplay.className = 'slider-value';
+    valueDisplay.textContent = slider.value;
+    
+    slider.oninput = () => {
+      valueDisplay.textContent = slider.value;
+      answers[currentQ] = slider.value;
+      updateNextButton();
+    };
+    
+    sliderDiv.appendChild(labels);
+    sliderDiv.appendChild(slider);
+    sliderDiv.appendChild(valueDisplay);
+    answerArea.appendChild(sliderDiv);
+    
+    if (!answers[currentQ]) {
+      answers[currentQ] = slider.value;
     }
-
-    function showQuestion() {
-      if (currentQ >= questions.length) {
-        showFinalMessage();
-        return;
-      }
+  } 
+  else if (q.type === 'checkbox') {
+    const checkboxDiv = document.createElement('div');
+    checkboxDiv.className = 'checkbox-group';
+    
+    const savedAnswers = answers[currentQ] || [];
+    
+    q.options.forEach((option, idx) => {
+      const item = document.createElement('div');
+      item.className = 'checkbox-item';
+      if (savedAnswers.includes(option)) item.classList.add('selected');
       
-      document.getElementById('question').textContent = questions[currentQ].q;
-      document.getElementById('emoji').textContent = questions[currentQ].emoji;
-      document.getElementById('emoji').classList.remove('sad');
-      document.getElementById('questionSection').classList.remove('hidden');
-      document.getElementById('responseSection').classList.add('hidden');
-      document.getElementById('sassyComment').classList.add('hidden');
-      document.getElementById('hintText').classList.remove('hidden');
-      document.getElementById('gifContainer').classList.add('hidden');
-      document.getElementById('responseGifContainer').classList.add('hidden');
-      noBtnClicks = 0;
-      document.getElementById('noBtn').textContent = 'No...';
-      document.getElementById('noBtn').style.transform = 'scale(1)';
-    }
-
-    function answerYes() {
-      loveLevel += 15;
-      if (loveLevel > 100) loveLevel = 100;
+      const checkbox = document.createElement('input');
+      checkbox.type = 'checkbox';
+      checkbox.id = `check-${idx}`;
+      checkbox.checked = savedAnswers.includes(option);
+      checkbox.onchange = () => toggleCheckbox(item, checkbox, option);
       
-      showResponse(questions[currentQ].yesRes);
-      showResponseGif(questions[currentQ].yesGif);
-      createFlowerRain();
-      createConfetti();
-      createHeartBurst();
+      const label = document.createElement('label');
+      label.htmlFor = `check-${idx}`;
+      label.textContent = option;
       
-      setTimeout(() => {
-        document.getElementById('meterFill').style.width = loveLevel + '%';
-      }, 100);
-    }
-
-    function answerNo() {
-      noBtnClicks++;
-      const noBtn = document.getElementById('noBtn');
-      const card = document.getElementById('card');
-      const emoji = document.getElementById('emoji');
-      const sassyComment = document.getElementById('sassyComment');
-      const hintText = document.getElementById('hintText');
-      const gifContainer = document.getElementById('gifContainer');
-      const gifImage = document.getElementById('gifImage');
-      
-      if (noBtnClicks === 1) {
-        card.classList.add('shake');
-        setTimeout(() => card.classList.remove('shake'), 600);
-        emoji.classList.add('sad');
-        emoji.textContent = '🥺';
-        noBtn.textContent = "You sure? 🥺";
-        noBtn.style.transform = 'scale(0.9)';
-        
-        hintText.classList.add('hidden');
-        sassyComment.textContent = "Wait, really? Come on, bbq... 💔";
-        sassyComment.classList.remove('hidden');
-        
-        gifImage.src = questions[currentQ].gifFile;
-        gifContainer.classList.remove('hidden');
-      } 
-      else if (noBtnClicks === 2) {
-        card.classList.add('shake');
-        setTimeout(() => card.classList.remove('shake'), 600);
-        emoji.textContent = '😢';
-        noBtn.textContent = "Really? 😢";
-        noBtn.style.transform = 'scale(0.8)';
-        
-        sassyComment.textContent = "You sure about that, baby? 🤔";
-      } 
-      else if (noBtnClicks === 3) {
-        card.classList.add('dramatic-shake');
-        setTimeout(() => card.classList.remove('dramatic-shake'), 800);
-        emoji.textContent = '💔';
-        noBtn.textContent = "Fine... 💔";
-        noBtn.style.transform = 'scale(0.7)';
-        
-        sassyComment.textContent = "Alright then, mosh... 😭";
-        
-        setTimeout(() => {
-          loveLevel += 5;
-          showResponse(questions[currentQ].noRes);
-          showResponseGif(questions[currentQ].gifFile);
-          createFlowerRain();
-          setTimeout(() => {
-            document.getElementById('meterFill').style.width = loveLevel + '%';
-          }, 100);
-        }, 1000);
-      }
-    }
-
-    function showResponse(text) {
-      document.getElementById('response').textContent = text;
-      document.getElementById('questionSection').classList.add('hidden');
-      document.getElementById('responseSection').classList.remove('hidden');
-    }
-
-    function showResponseGif(gifFile) {
-      const responseGifContainer = document.getElementById('responseGifContainer');
-      const responseGifImage = document.getElementById('responseGifImage');
-      responseGifImage.src = gifFile;
-      responseGifContainer.classList.remove('hidden');
-    }
-
-    function nextQuestion() {
-      currentQ++;
-      showQuestion();
-    }
-
-    function showFinalMessage() {
-      document.getElementById('emoji').textContent = '💕';
-      document.getElementById('title').textContent = 'Done! ✨';
-      document.getElementById('response').textContent = `That's it, loml! Love level: ${loveLevel}%. Thanks for playing along with me, babiiee 💕`;
-      document.getElementById('questionSection').classList.add('hidden');
-      document.getElementById('responseSection').classList.remove('hidden');
-      document.getElementById('meterFill').style.width = '100%';
-      document.querySelector('.next-btn').textContent = 'Start Over 🔄';
-      document.querySelector('.next-btn').onclick = () => {
-        currentQ = 0;
-        loveLevel = 0;
-        document.getElementById('title').textContent = 'A Question for You...';
-        document.getElementById('card').classList.remove('epic-finale', 'final-glow');
-        startGame();
+      item.appendChild(checkbox);
+      item.appendChild(label);
+      item.onclick = (e) => {
+        if (e.target !== checkbox) {
+          checkbox.checked = !checkbox.checked;
+          toggleCheckbox(item, checkbox, option);
+        }
       };
       
-      // Add smooth finale effects to card
-      const card = document.getElementById('card');
-      card.classList.add('epic-finale', 'final-glow');
-      
-      showResponseGif('kawaii-anime.gif');
-      
-      // Confetti burst
-      for (let i = 0; i < 60; i++) {
-        setTimeout(() => createConfetti(), i * 40);
-      }
-      
-      // Hearts
-      for (let i = 0; i < 20; i++) {
-        setTimeout(() => createHeartBurst(), i * 150);
-      }
-      
-      // Sparkles
-      const sparkleInterval = setInterval(() => createSparkle(), 300);
-      setTimeout(() => clearInterval(sparkleInterval), 5000);
+      checkboxDiv.appendChild(item);
+    });
+    
+    answerArea.appendChild(checkboxDiv);
+  }
+  
+  updateNextButton();
+  updateBackButton();
+}
+
+function selectEmoji(btn, emoji) {
+  document.querySelectorAll('.emoji-btn').forEach(b => b.classList.remove('selected'));
+  btn.classList.add('selected');
+  answers[currentQ] = emoji;
+  updateNextButton();
+  createSparkle(btn.offsetLeft + btn.offsetWidth / 2, btn.offsetTop + btn.offsetHeight / 2);
+}
+
+function toggleCheckbox(item, checkbox, option) {
+  if (!answers[currentQ]) answers[currentQ] = [];
+  
+  if (checkbox.checked) {
+    item.classList.add('selected');
+    if (!answers[currentQ].includes(option)) {
+      answers[currentQ].push(option);
     }
+  } else {
+    item.classList.remove('selected');
+    answers[currentQ] = answers[currentQ].filter(a => a !== option);
+  }
+  
+  updateNextButton();
+}
 
-    function createFirework() {
-      const colors = ['#ff6b6b', '#4ecdc4', '#45b7d1', '#feca57', '#ff9ff3', '#48dbfb'];
-      const x = Math.random() * window.innerWidth;
-      const y = Math.random() * window.innerHeight * 0.6;
-      
-      for (let i = 0; i < 30; i++) {
-        const firework = document.createElement('div');
-        firework.className = 'firework';
-        firework.style.left = x + 'px';
-        firework.style.top = y + 'px';
-        firework.style.background = colors[Math.floor(Math.random() * colors.length)];
-        
-        const angle = (Math.PI * 2 * i) / 30;
-        const velocity = 100 + Math.random() * 100;
-        const xVel = Math.cos(angle) * velocity;
-        const yVel = Math.sin(angle) * velocity;
-        
-        firework.style.setProperty('--x', xVel + 'px');
-        firework.style.setProperty('--y', yVel + 'px');
-        firework.style.animation = 'fireworkExplode 1s ease-out forwards';
-        
-        document.body.appendChild(firework);
-        setTimeout(() => firework.remove(), 1000);
-      }
+function updateNextButton() {
+  const q = questions[currentQ];
+  const nextBtn = document.getElementById('nextBtn');
+  
+  if (q.type === 'text') {
+    const input = document.querySelector('.input-text');
+    answers[currentQ] = input.value.trim();
+    nextBtn.disabled = !answers[currentQ];
+  } 
+  else if (q.type === 'checkbox') {
+    nextBtn.disabled = !answers[currentQ] || answers[currentQ].length === 0;
+  } 
+  else {
+    nextBtn.disabled = !answers[currentQ];
+  }
+  
+  if (currentQ === questions.length - 1) {
+    nextBtn.textContent = 'Finish! ✨';
+  } else {
+    nextBtn.textContent = 'Next →';
+  }
+}
+
+function updateBackButton() {
+  const backBtn = document.getElementById('backBtn');
+  backBtn.style.display = currentQ === 0 ? 'none' : 'flex';
+}
+
+function updateProgress() {
+  const progress = ((currentQ + 1) / questions.length) * 100;
+  document.getElementById('progressFill').style.width = progress + '%';
+}
+
+function goNext() {
+  if (currentQ < questions.length - 1) {
+    currentQ++;
+    showQuestion();
+    updateProgress();
+  } else {
+    showResults();
+  }
+}
+
+function goBack() {
+  if (currentQ > 0) {
+    currentQ--;
+    showQuestion();
+    updateProgress();
+  }
+}
+
+function showResults() {
+  document.getElementById('questionSection').classList.add('hidden');
+  document.getElementById('resultsSection').classList.remove('hidden');
+  
+  const resultsContent = document.getElementById('resultsContent');
+  resultsContent.innerHTML = '';
+  
+  questions.forEach((q, idx) => {
+    const answerCard = document.createElement('div');
+    answerCard.className = 'answer-card';
+    
+    const questionDiv = document.createElement('div');
+    questionDiv.className = 'answer-question';
+    questionDiv.textContent = q.question;
+    
+    const answerDiv = document.createElement('div');
+    answerDiv.className = 'answer-text';
+    
+    if (Array.isArray(answers[idx])) {
+      answerDiv.textContent = answers[idx].join(', ');
+    } else {
+      answerDiv.textContent = answers[idx] || '—';
     }
+    
+    answerCard.appendChild(questionDiv);
+    answerCard.appendChild(answerDiv);
+    resultsContent.appendChild(answerCard);
+  });
+  
+  createConfettiBurst();
+  createStarBurst();
+}
 
-    function createSparkle() {
-      const sparkles = ['✨', '⭐', '💫', '🌟'];
-      const sparkle = document.createElement('div');
-      sparkle.className = 'sparkle';
-      sparkle.textContent = sparkles[Math.floor(Math.random() * sparkles.length)];
-      sparkle.style.left = (Math.random() * window.innerWidth) + 'px';
-      sparkle.style.top = (Math.random() * window.innerHeight) + 'px';
-      sparkle.style.fontSize = (20 + Math.random() * 30) + 'px';
-      
-      document.body.appendChild(sparkle);
-      setTimeout(() => sparkle.remove(), 2000);
-    }
+function restartSurvey() {
+  document.getElementById('resultsSection').classList.add('hidden');
+  document.getElementById('questionSection').classList.remove('hidden');
+  startSurvey();
+}
 
-    function emojiClick() {
-      const emoji = document.getElementById('emoji');
-      emoji.style.transform = 'scale(1.5) rotate(360deg)';
-      createHeartBurst();
-      setTimeout(() => {
-        emoji.style.transform = 'scale(1) rotate(0deg)';
-      }, 500);
-    }
+function emojiClick() {
+  const emoji = document.querySelector('.header-emoji');
+  emoji.style.transform = 'scale(1.4) rotate(360deg)';
+  createStarBurst();
+  setTimeout(() => {
+    emoji.style.transform = 'scale(1) rotate(0deg)';
+  }, 500);
+}
 
-    function createFlowerRain() {
-      const flowers = ['🌸', '🌺', '🌻', '🌷', '🌹', '💐', '🏵️', '🌼'];
-      for (let i = 0; i < 15; i++) {
-        setTimeout(() => {
-          const flower = document.createElement('div');
-          flower.className = 'falling-flower';
-          flower.textContent = flowers[Math.floor(Math.random() * flowers.length)];
-          flower.style.left = Math.random() * 100 + '%';
-          flower.style.animationDuration = (Math.random() * 2 + 3) + 's';
-          flower.style.fontSize = (Math.random() * 20 + 30) + 'px';
-          document.getElementById('flowerRain').appendChild(flower);
-          
-          setTimeout(() => flower.remove(), 5000);
-        }, i * 100);
-      }
-    }
+function createSparkle(x, y) {
+  const sparkles = ['✨', '⭐', '💫', '🌟'];
+  for (let i = 0; i < 5; i++) {
+    const sparkle = document.createElement('div');
+    sparkle.textContent = sparkles[Math.floor(Math.random() * sparkles.length)];
+    sparkle.style.position = 'fixed';
+    sparkle.style.left = x + 'px';
+    sparkle.style.top = y + 'px';
+    sparkle.style.fontSize = '20px';
+    sparkle.style.pointerEvents = 'none';
+    sparkle.style.zIndex = '9999';
+    sparkle.style.animation = 'sparkleFloat 1s ease-out forwards';
+    document.body.appendChild(sparkle);
+    setTimeout(() => sparkle.remove(), 1000);
+  }
+}
 
-    function createHeartBurst() {
-      const hearts = ['💕', '💖', '💗', '💝', '💘', '❤️', '💓'];
-      for (let i = 0; i < 10; i++) {
-        const heart = document.createElement('div');
-        heart.className = 'floating-heart';
-        heart.textContent = hearts[Math.floor(Math.random() * hearts.length)];
-        heart.style.left = Math.random() * 100 + '%';
-        heart.style.animationDuration = (Math.random() * 2 + 3) + 's';
-        heart.style.animationDelay = (i * 0.1) + 's';
-        document.getElementById('floatingHearts').appendChild(heart);
-        
-        setTimeout(() => heart.remove(), 5000);
-      }
-    }
+function createConfettiBurst() {
+  const colors = ['#f093fb', '#f5576c', '#ffeaa7', '#a8edea', '#fed6e3'];
+  for (let i = 0; i < 50; i++) {
+    setTimeout(() => {
+      const confetti = document.createElement('div');
+      confetti.className = 'confetti';
+      confetti.style.left = Math.random() * 100 + '%';
+      confetti.style.top = '-20px';
+      confetti.style.width = '10px';
+      confetti.style.height = '10px';
+      confetti.style.background = colors[Math.floor(Math.random() * colors.length)];
+      confetti.style.borderRadius = '50%';
+      document.body.appendChild(confetti);
+      setTimeout(() => confetti.remove(), 3000);
+    }, i * 30);
+  }
+}
 
-    function createConfetti() {
-      const colors = ['#667eea', '#764ba2', '#f093fb', '#f5576c', '#ffa8a8', '#ffd93d', '#43e97b'];
-      for (let i = 0; i < 25; i++) {
-        setTimeout(() => {
-          const confetti = document.createElement('div');
-          confetti.className = 'confetti';
-          confetti.style.left = Math.random() * 100 + '%';
-          confetti.style.background = colors[Math.floor(Math.random() * colors.length)];
-          confetti.style.animationDelay = '0s';
-          document.body.appendChild(confetti);
-          setTimeout(() => confetti.remove(), 3000);
-        }, i * 40);
-      }
-    }
+function createStarBurst() {
+  const stars = document.getElementById('stars');
+  for (let i = 0; i < 8; i++) {
+    const star = document.createElement('div');
+    star.className = 'star';
+    star.textContent = ['✨', '⭐', '💫', '🌟'][Math.floor(Math.random() * 4)];
+    star.style.left = Math.random() * 100 + '%';
+    star.style.top = Math.random() * 100 + '%';
+    star.style.animationDelay = (i * 0.2) + 's';
+    stars.appendChild(star);
+    setTimeout(() => star.remove(), 3000);
+  }
+}
 
-    // Random floating hearts
-    setInterval(() => {
-      if (Math.random() > 0.6) {
-        const heart = document.createElement('div');
-        heart.className = 'floating-heart';
-        heart.textContent = ['💕', '💖', '💗', '💝'][Math.floor(Math.random() * 4)];
-        heart.style.left = Math.random() * 100 + '%';
-        heart.style.animationDuration = (Math.random() * 2 + 4) + 's';
-        document.getElementById('floatingHearts').appendChild(heart);
-        
-        setTimeout(() => heart.remove(), 6000);
-      }
-    }, 2000);
+// Twinkling stars in background
+setInterval(() => {
+  if (Math.random() > 0.7) {
+    const star = document.createElement('div');
+    star.className = 'star';
+    star.textContent = '✨';
+    star.style.left = Math.random() * 100 + '%';
+    star.style.top = Math.random() * 100 + '%';
+    document.getElementById('stars').appendChild(star);
+    setTimeout(() => star.remove(), 3000);
+  }
+}, 2000);
 
-    startGame();
+startSurvey();
   </script>
 </body>
 </html>
